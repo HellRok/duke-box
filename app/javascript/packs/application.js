@@ -1,12 +1,13 @@
 import './application.css';
 
-import Vue from 'vue/dist/vue.js'
+import Vue from 'vue'
 import App from '../components/app.vue'
 
 document.addEventListener('DOMContentLoaded', () => {
-  const app = new Vue({
-    el: 'app',
-    template: '<App/>',
-    components: { App }
-  })
+  //const app = new Vue({
+  //  el: 'app',
+  //  template: '<App/>',
+  //  components: { App }
+  //})
+  new Vue(App).$mount('#app');
 })
