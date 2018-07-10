@@ -7,9 +7,14 @@
 
     <%= stylesheet_pack_tag    'application' %>
     <%= javascript_pack_tag 'application' %>
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,500,700,400italic|Material+Icons">
+    <meta charset="utf-8">
+    <meta content="width=device-width,initial-scale=1,minimal-ui" name="viewport">
   </head>
 
   <body>
-    <%= yield %>
+    <div class="page-container">
+      <%= yield %>
+    </div>
   </body>
 </html>
