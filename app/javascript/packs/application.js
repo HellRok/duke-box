@@ -11,3 +11,7 @@ Vue.use(VueRouter);
 document.addEventListener('DOMContentLoaded', () => {
   new Vue(App).$mount('#app');
 });
+
+import jsonApi from '../models'
+
+window.j = jsonApi;
