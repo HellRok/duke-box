@@ -17,8 +17,8 @@
           </md-card-actions>
         </md-card>
 
-        <search-result v-for="(video, index) in searchResults"
-          :video="video" :key="index"></search-result>
+        <search-result v-for="video in searchResults"
+          :video="video" :key="video.id.videoId"></search-result>
       </md-tab>
       <md-tab id="tab-queue" md-label="Queue">
         QUEUE
@@ -30,6 +30,7 @@
 <script>
   import VueMaterial from 'vue-material'
   import Loading from 'vue-loading-overlay'
+  import axios from 'axios'
   import SearchResult from '../components/search-result'
   import jsonApi from '../models'
 
@@ -42,14 +43,19 @@
       return {
         loading: false,
         query: '',
-        searchResults: [{ id: 'sth' }],
+        searchResults: [],
         videoQueue: []
       }
     },
     methods: {
       search() {
         this.loading = true;
-        console.log(this.query);
+        var _this = this;
+        axios.get('/api/v1/search', { params: { query: this.query } }).
+          then(function (response) {
+            _this.searchResults = response['data']['items'];
+            _this.loading = false;
+          });
       }
     }
   }

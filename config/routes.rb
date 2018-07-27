@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   scope path: '/api' do
     scope path: '/v1' do
       resources :rooms
+      resources :search, only: :index
     end
   end
 end
