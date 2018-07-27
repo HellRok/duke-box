@@ -18,7 +18,6 @@ let updateTokenMiddleware = {
   req: function (payload) {
     if (payload.config.method !== 'GET') {
       axios.get('/csrf-token').then(function(data) {
-        console.log(data.data);
         document.querySelector('.js-csrf-token').textContent = data.data;
       })
     }

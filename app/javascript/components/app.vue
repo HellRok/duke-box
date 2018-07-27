@@ -38,9 +38,11 @@
   Vue.use(VueMaterial)
 
   import Home from '../components/home.vue'
+  import Room from '../components/room.vue'
 
   const routes = [
-    { path: '/', component: Home }
+    { path: '/', component: Home },
+    { path: '/rooms/:id', component: Room }
   ];
 
   const router = new VueRouter({ routes: routes });
