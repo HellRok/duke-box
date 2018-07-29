@@ -27,10 +27,22 @@ let updateTokenMiddleware = {
 jsonApi.insertMiddlewareBefore('axios-request', authMiddleware)
 jsonApi.insertMiddlewareAfter('axios-request', updateTokenMiddleware)
 
-// Define Model
+// Define Models
 jsonApi.define('room', {
   owner_uuid: '',
-  owner_ip: ''
+  owner_ip: '',
+  videos: {
+    jsonApi: 'hasMany',
+    type: 'video'
+  }
+})
+
+jsonApi.define('video', {
+  creator_uuid: '',
+  youtube_id: '',
+  title: '',
+  thumbnail: '',
+  room_id: 0
 })
 
 export default jsonApi

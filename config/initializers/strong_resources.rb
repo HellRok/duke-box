@@ -31,6 +31,13 @@
 #
 # For additional documentation, see https://jsonapi-suite.github.io/strong_resources
 StrongResources.configure do
+  strong_resource :video do
+    attribute :creator_uuid, :string
+    attribute :youtube_id, :string
+    attribute :title, :string
+    attribute :thumbnail, :string
+    attribute :room_id, :integer
+  end
   strong_resource :room do
     attribute :owner_uuid, :string
     attribute :owner_ip, :string

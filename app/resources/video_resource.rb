@@ -1,11 +1,11 @@
 # Define how to query and persist a given model.
 # Further Resource documentation: https://jsonapi-suite.github.io/jsonapi_compliable/JsonapiCompliable/Resource.html
-class RoomResource < ApplicationResource
+class VideoResource < ApplicationResource
   # Used for associating this resource with a given input.
   # This should match the 'type' in the corresponding serializer.
-  type :rooms
+  type :videos
   # Associate to a Model object so we know how to persist.
-  model Room
+  model Video
   # Customize your resource here. Some common examples:
   #
   # === Allow ?filter[name] query parameter ===
@@ -15,7 +15,6 @@ class RoomResource < ApplicationResource
   # allow_stat total: [:count]
   #
   # === Allow sideloading/sideposting of relationships ===
-  has_many :videos
   # belongs_to :foo,
   #   foreign_key: :foo_id,
   #   resource: FooResource,

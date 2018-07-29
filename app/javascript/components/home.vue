@@ -19,8 +19,7 @@
     },
     data: function () {
       return {
-        loading: false,
-        id: this.$route.params.id
+        loading: false
       }
     },
     methods: {

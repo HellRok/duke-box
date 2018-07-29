@@ -20,10 +20,11 @@
         </md-card>
 
         <search-result v-for="video in searchResults"
-          :video="video" :key="video.id.videoId"></search-result>
+          :video="video" :roomId="id" :key="video.id.videoId"></search-result>
       </md-tab>
       <md-tab id="tab-queue" md-label="Queue">
-        QUEUE
+        <search-result v-for="video in videoQueue"
+          :video="video" :roomId="id" :key="video.id.videoId"></search-result>
       </md-tab>
     </md-tabs>
   </div>
@@ -34,7 +35,6 @@
   import Loading from 'vue-loading-overlay'
   import axios from 'axios'
   import SearchResult from '../components/search-result'
-  import jsonApi from '../models'
 
   export default {
     components: {
@@ -44,6 +44,7 @@
     data: function () {
       return {
         loading: false,
+        id: this.$route.params.id,
         query: '',
         searchResults: [],
         videoQueue: []
