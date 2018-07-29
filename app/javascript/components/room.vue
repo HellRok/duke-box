@@ -4,17 +4,19 @@
     <md-tabs class="md-transparent" md-alignment="fixed">
       <md-tab id="tab-search" md-label="Search">
         <md-card>
-          <md-card-content>
-            <md-field>
-              <label>Search</label>
-              <md-input v-model="query"></md-input>
-            </md-field>
-          </md-card-content>
-          <md-card-actions>
-            <md-button class="md-primary" v-on:click="search()">
-              Search
-            </md-button>
-          </md-card-actions>
+          <form @submit.prevent="search">
+            <md-card-content>
+              <md-field>
+                <label>Search</label>
+                <md-input v-model="query"></md-input>
+              </md-field>
+            </md-card-content>
+            <md-card-actions>
+              <md-button type="submit" class="md-primary">
+                Search
+              </md-button>
+            </md-card-actions>
+          </form>
         </md-card>
 
         <search-result v-for="video in searchResults"
