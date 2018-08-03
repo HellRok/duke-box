@@ -23,23 +23,27 @@
           :video="video" :roomId="id" :key="video.id.videoId"></search-result>
       </md-tab>
       <md-tab id="tab-queue" md-label="Queue">
-        <search-result v-for="video in videoQueue"
-          :video="video" :roomId="id" :key="video.id.videoId"></search-result>
+        <queued-video v-for="queuedVideo in videoQueue"
+          :video="queuedVideo" :roomId="id" :key="queuedVideo.id"></queued-video>
       </md-tab>
     </md-tabs>
   </div>
 </template>
 
 <script>
+  import Vue from 'vue'
   import VueMaterial from 'vue-material'
   import Loading from 'vue-loading-overlay'
   import axios from 'axios'
   import SearchResult from '../components/search-result'
+  import QueuedVideo from '../components/queued-video'
+  import jsonApi from '../models'
 
   export default {
     components: {
       Loading,
-      SearchResult
+      SearchResult,
+      QueuedVideo
     },
     data: function () {
       return {
@@ -50,6 +54,9 @@
         videoQueue: []
       }
     },
+    created: function() {
+      this.updateQueue();
+    },
     methods: {
       search() {
         this.loading = true;
@@ -59,6 +66,15 @@
             _this.searchResults = response['data']['items'];
             _this.loading = false;
           });
+      },
+      updateQueue() {
+        var _this = this;
+        jsonApi.findAll('video', { room_id: this.id }).then(function(response) {
+          _this.videoQueue = response.data;
+          console.log(_this);
+          console.log(_this.videoQueue);
+          setTimeout(function() { _this.updateQueue() }, 2000);
+        })
       }
     }
   }
