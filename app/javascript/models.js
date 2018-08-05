@@ -6,7 +6,7 @@ const jsonApi = new JsonApi({apiUrl:'/api/v1'})
 let authMiddleware = {
   name: 'auth',
   req: function (payload) {
-    if (payload.req.method !== 'GET') {
+    if (payload.req.method !== 'get') {
       payload.req.headers['X-CSRF-Token'] = document.querySelector('.js-csrf-token').textContent;
     }
 
@@ -16,7 +16,7 @@ let authMiddleware = {
 let updateTokenMiddleware = {
   name: 'update-csrf-token',
   req: function (payload) {
-    if (payload.config.method !== 'GET') {
+    if (payload.config.method !== 'get') {
       axios.get('/csrf-token').then(function(data) {
         document.querySelector('.js-csrf-token').textContent = data.data;
       })
