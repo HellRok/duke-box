@@ -51,11 +51,9 @@
         id: this.$route.params.id,
         query: '',
         searchResults: [],
-        videoQueue: []
+        videoQueue: [],
+        interval: undefined
       }
-    },
-    created: function() {
-      this.updateQueue();
     },
     methods: {
       search() {
@@ -71,11 +69,15 @@
         var _this = this;
         jsonApi.findAll('video', { room_id: this.id }).then(function(response) {
           _this.videoQueue = response.data;
-          console.log(_this);
-          console.log(_this.videoQueue);
-          setTimeout(function() { _this.updateQueue() }, 2000);
         })
       }
+    },
+    created: function() {
+      this.updateQueue();
+      this.interval = setInterval(function() { this.updateQueue(); }.bind(this), 2000);
+    },
+    beforeDestroy: function() {
+      clearInterval(this.interval);
     }
   }
 </script>
