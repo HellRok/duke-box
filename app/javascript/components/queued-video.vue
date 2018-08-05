@@ -3,7 +3,7 @@
     <loading :active.sync="loading" :is-full-page="false"></loading>
     <md-card>
       <md-card-media-cover-override md-solid>
-        <md-card-media md-ratio="16:9">
+        <md-card-media md-ratio="4:3">
           <img :src="video.thumbnail" />
         </md-card-media>
 

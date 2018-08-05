@@ -57,4 +57,13 @@
   }
 </script>
 
-<style scoped></style>
+<style scoped>
+  .md-app-content {
+    margin: 0;
+    padding: 0;
+  }
+
+  .md-card {
+    margin: 0 auto;
+  }
+</style>
