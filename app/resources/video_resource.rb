@@ -9,12 +9,15 @@ class VideoResource < ApplicationResource
   # Customize your resource here. Some common examples:
   #
   # === Allow ?filter[name] query parameter ===
-  # allow_filter :name
+  allow_filter :room_id
   #
   # === Enable total count, when requested ===
   # allow_stat total: [:count]
   #
   # === Allow sideloading/sideposting of relationships ===
+  belongs_to :room,
+    resource: RoomResource,
+    foreign_key: :room_id
   # belongs_to :foo,
   #   foreign_key: :foo_id,
   #   resource: FooResource,

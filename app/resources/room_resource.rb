@@ -15,7 +15,10 @@ class RoomResource < ApplicationResource
   # allow_stat total: [:count]
   #
   # === Allow sideloading/sideposting of relationships ===
-  has_many :videos
+  has_many :videos,
+    resource: VideoResource,
+    foreign_key: :room_id
+
   # belongs_to :foo,
   #   foreign_key: :foo_id,
   #   resource: FooResource,
