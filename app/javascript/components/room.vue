@@ -24,7 +24,7 @@
       </md-tab>
       <md-tab id="tab-queue" md-label="Queue">
         <queued-video v-for="queuedVideo in videoQueue"
-          :video="queuedVideo" :roomId="id" :key="queuedVideo.id"></queued-video>
+          :video="queuedVideo" :key="queuedVideo.id"></queued-video>
       </md-tab>
     </md-tabs>
   </div>
