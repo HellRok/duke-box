@@ -26,7 +26,7 @@
       createRoom () {
         this.loading = true;
         var _this = this;
-        jsonApi.create('room', { owner_uuid: '#not-yet-implemented' }).then(function(data) {
+        jsonApi.create('room', { owner_uuid: window.localStorage.uuid}).then(function(data) {
           _this.$router.push('/rooms/' + data.data.id);
         });
       }

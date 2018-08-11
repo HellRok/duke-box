@@ -44,7 +44,7 @@
         var _this = this;
         jsonApi.create('video', {
           room_id: this.roomId,
-          creator_uuid: '#not-yet-implemented',
+          creator_uuid: window.localStorage.uuid,
           youtube_id: this.video.id.videoId,
           title: this.video.snippet.title,
           thumbnail: this.video.snippet.thumbnails.high.url

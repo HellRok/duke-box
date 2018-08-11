@@ -34,6 +34,7 @@
   import Vue from 'vue/dist/vue.esm.js'
   import VueRouter from 'vue-router'
   import VueMaterial from 'vue-material'
+  import UUID4 from 'uuid/v4'
 
   Vue.use(VueMaterial)
 
@@ -52,6 +53,11 @@
     data: function () {
       return {
         menuVisible: false
+      }
+    },
+    created: function() {
+      if (window.localStorage.uuid === undefined) {
+        window.localStorage.uuid =  UUID4();
       }
     }
   }
