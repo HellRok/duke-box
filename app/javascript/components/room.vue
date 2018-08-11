@@ -67,7 +67,7 @@
       },
       updateQueue() {
         var _this = this;
-        jsonApi.findAll('video', { 'filter[room_id]': this.id }).then(function(response) {
+        jsonApi.findAll('video', { 'filter[room_id]': this.id, include: 'room' }).then(function(response) {
           _this.videoQueue = response.data;
         })
       }

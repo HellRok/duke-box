@@ -9,6 +9,8 @@ class SerializableVideo < JSONAPI::Serializable::Resource
   attribute :thumbnail
   attribute :room_id
 
+  belongs_to :room
+
   # Add attributes here to ensure they get rendered, .e.g.
   #
   # attribute :name

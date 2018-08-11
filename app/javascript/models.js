@@ -42,7 +42,11 @@ jsonApi.define('video', {
   youtube_id: '',
   title: '',
   thumbnail: '',
-  room_id: 0
+  room_id: 0,
+  room: {
+    jsonApi: 'hasOne',
+    type: 'room'
+  }
 })
 
 export default jsonApi

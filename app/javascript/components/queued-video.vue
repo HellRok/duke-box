@@ -12,7 +12,7 @@
             <span class="md-title">{{ video.title }}</span>
           </md-card-header>
 
-          <md-card-actions>
+          <md-card-actions v-if="canRemove()">
             <md-button v-on:click="remove()">Remove</md-button>
           </md-card-actions>
         </md-card-area>
@@ -42,6 +42,12 @@
       remove() {
         this.loading = true;
         jsonApi.destroy('video', this.video.id);
+      },
+      canRemove() {
+        if (this.video.room.owner_uuid === window.localStorage.uuid) {
+          return true;
+        }
+        return this.video.creator_uuid === window.localStorage.uuid;
       }
     }
   }

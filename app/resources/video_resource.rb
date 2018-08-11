@@ -16,6 +16,7 @@ class VideoResource < ApplicationResource
   #
   # === Allow sideloading/sideposting of relationships ===
   belongs_to :room,
+    scope: -> { Room.all },
     resource: RoomResource,
     foreign_key: :room_id
   # belongs_to :foo,
