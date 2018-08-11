@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <div class="root">
+    <loading :active.sync="loading" :is-full-page="false"></loading>
     <md-card>
       <md-card-media-cover-override md-solid>
         <md-card-media md-ratio="4:3">
@@ -22,16 +23,25 @@
 
 <script>
   import VueMaterial from 'vue-material'
+  import Loading from 'vue-loading-overlay'
   import MdCardMediaCoverOverride from '../components/md-card-media-cover-override'
   import jsonApi from '../models'
 
   export default {
     components: {
-      MdCardMediaCoverOverride
+      MdCardMediaCoverOverride,
+      Loading
     },
     props: ['video', 'roomId'],
+    data: function() {
+      return {
+        loading: false
+      }
+    },
     methods: {
       add() {
+        this.loading = true;
+        var _this = this;
         jsonApi.create('video', {
           room_id: this.roomId,
           creator_uuid: '#not-yet-implemented',
@@ -39,9 +49,8 @@
           title: this.video.snippet.title,
           thumbnail: this.video.snippet.thumbnails.high.url
         }).then(function(response) {
-          console.log(response.data)
+          _this.loading = false
         });
-
       }
     }
   }
@@ -50,5 +59,9 @@
 <style scoped>
   .md-card {
     margin-top: 5px;
+  }
+
+  .root {
+    position: relative;
   }
 </style>
