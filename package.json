@@ -10,7 +10,8 @@
     "vue-loading-overlay": "^2.1.0",
     "vue-material": "^1.0.0-beta-10.2",
     "vue-router": "^3.0.1",
-    "vue-template-compiler": "^2.5.16"
+    "vue-template-compiler": "^2.5.16",
+    "vue-youtube": "^1.2.5"
   },
   "devDependencies": {
     "webpack-dev-server": "2.11.2"

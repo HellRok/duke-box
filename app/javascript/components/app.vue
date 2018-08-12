@@ -1,6 +1,6 @@
 <template>
   <md-app>
-    <md-app-toolbar class="md-primary">
+    <md-app-toolbar class="md-primary" ref="menubar">
       <div class="md-toolbar-row">
         <div class="md-toolbar-section-start">
           <md-button class="md-icon-button" @click="menuVisible = !menuVisible">
@@ -40,10 +40,12 @@
 
   import Home from '../components/home.vue'
   import Room from '../components/room.vue'
+  import Display from '../components/display.vue'
 
   const routes = [
     { path: '/', component: Home },
-    { path: '/rooms/:id', component: Room }
+    { path: '/rooms/:id', component: Room },
+    { path: '/rooms/:id/display', component: Display }
   ];
 
   const router = new VueRouter({ routes: routes });

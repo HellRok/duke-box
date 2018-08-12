@@ -1,3 +1,15 @@
 .md-app {
   min-height: 100vh;
 }
+
+.md-hide {
+  display: none !important;
+}
+
+iframe {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw !important;
+  height: 100vh !important;
+}

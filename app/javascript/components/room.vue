@@ -1,6 +1,11 @@
 <template>
   <div>
     <loading :active.sync="loading" :is-full-page="true"></loading>
+
+    <md-button class="display-button md-primary" v-on:click="openDisplay">
+      Start Display
+    </md-button>
+
     <md-tabs class="md-transparent" md-alignment="fixed">
       <md-tab id="tab-search" md-label="Search">
         <md-card>
@@ -70,6 +75,9 @@
         jsonApi.findAll('video', { 'filter[room_id]': this.id, include: 'room' }).then(function(response) {
           _this.videoQueue = response.data;
         })
+      },
+      openDisplay() {
+        window.open('/#/rooms/' + this.id + '/display', '_blank');
       }
     },
     created: function() {
@@ -82,4 +90,8 @@
   }
 </script>
 
-<style scoped></style>
+<style scoped>
+  .display-button {
+    width: 100%;
+  }
+</style>
