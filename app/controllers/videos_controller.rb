@@ -33,6 +33,7 @@ class VideosController < ApiController
     video, success = jsonapi_create.to_a
 
     if success
+      video.room.touch
       render_jsonapi(video, scope: false)
     else
       render_errors_for(video)

@@ -14,6 +14,7 @@ class RoomsController < ApiController
   # Start with a base scope and pass to render_jsonapi
   def index
     rooms = Room.all
+    rooms = rooms.where(owner_ip: request.remote_ip) if params[:local]
     render_jsonapi(rooms)
   end
 
@@ -31,6 +32,11 @@ class RoomsController < ApiController
   # On validation errors, render correct error JSON.
   def create
     room, success = jsonapi_create.to_a
+    room.update!(owner_ip: request.remote_ip)
+
+    # Clear out old rooms to keep under 10,000 rows in the database so we can
+    # stay on the free tier of Heroku
+    Room.where("updated_at < ?", 24.hours.ago).each(&:destroy)
 
     if success
       render_jsonapi(room, scope: false)

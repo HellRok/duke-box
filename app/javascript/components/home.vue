@@ -1,10 +1,6 @@
 <template>
   <div>
     <loading :active.sync="loading" :is-full-page="true"></loading>
-
-    <md-button class="md-primary md-raised" v-on:click="createRoom()">
-      Start a new room
-    </md-button>
   </div>
 </template>
 
@@ -26,10 +22,22 @@
       createRoom () {
         this.loading = true;
         var _this = this;
-        jsonApi.create('room', { owner_uuid: window.localStorage.uuid}).then(function(data) {
+        jsonApi.create('room', { owner_uuid: window.localStorage.uuid}).then((data) => {
           _this.$router.push('/rooms/' + data.data.id);
         });
+      },
+      redirectToRoom() {
+        jsonApi.findAll('room', { 'local': 1 }).then((response) => {
+          if (response.data.length > 0) {
+            this.$router.push('/rooms/' + response.data[0].id);
+          } else {
+            this.createRoom();
+          }
+        })
       }
+    },
+    created: function() {
+      this.redirectToRoom();
     }
   }
 </script>
