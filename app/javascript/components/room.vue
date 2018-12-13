@@ -76,11 +76,18 @@
           _this.videoQueue = response.data;
         })
       },
+      checkExists() {
+        var _this = this;
+        jsonApi.find('room', this.id).catch(function(_) {
+          _this.$router.push("/");
+        })
+      },
       openDisplay() {
         window.open('/#/rooms/' + this.id + '/display', '_blank');
       }
     },
     created: function() {
+      this.checkExists();
       this.updateQueue();
       this.interval = setInterval(function() { this.updateQueue(); }.bind(this), 2000);
     },
