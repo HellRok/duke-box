@@ -13,7 +13,13 @@
             <md-card-content>
               <md-field>
                 <label>Search</label>
-                <md-input v-model="query"></md-input>
+                <!--
+                  v-model doesn't work on phones, found this workaround (but
+                  had to switch from input to keyup for unkown reasons)
+
+                  https://github.com/vuejs/vue/issues/8231#issuecomment-437359416
+                -->
+                <md-input v-bind:value="query" v-on:keyup="query=$event.target.value"></md-input>
               </md-field>
             </md-card-content>
             <md-card-actions>
