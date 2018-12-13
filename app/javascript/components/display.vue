@@ -25,6 +25,19 @@
     methods: {
       updateQueue() {
         var _this = this;
+
+        // Check if we are still supposed to be playing this video
+        if (!this.playNextVideo && this.$refs.videoPlayer.player !== undefined) {
+          this.$refs.videoPlayer.player.getVideoUrl().then(response => {
+            _this.playNextVideo = (this.videoQueue[0].youtube_id !== response.split("?v=")[1]);
+          });
+        }
+
+        // If the last video is removed, just pause it
+        if (this.videoQueue.length === 0 && this.$refs.videoPlayer !== undefined) {
+          this.$refs.videoPlayer.player.pauseVideo();
+        }
+
         jsonApi.findAll('video', { 'filter[room_id]': this.id, include: 'room' }).then(function(response) {
           _this.videoQueue = response.data;
           if (_this.playNextVideo === true) {
