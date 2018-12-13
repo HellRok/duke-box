@@ -1,7 +1,6 @@
-require 'open-uri'
-
 class HomeController < ApplicationController
   def index
+    send_to_https
   end
 
   def csrf_token
